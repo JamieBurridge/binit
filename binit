@@ -1,0 +1,26 @@
+#!/usr/bin/python3
+
+import sys
+import os
+import shutil
+
+HOME_DIR = os.environ["HOME"]
+TRASH_DIR = ".local/share/Trash/files"
+
+def main():
+    files_to_remove = sys.argv[1:]
+
+    if len(files_to_remove) == 0:
+        print("Please provide files to remove")
+        sys.exit()
+
+    # Move files to trash
+    for file in files_to_remove:
+        # Check if is directory or file
+        if os.path.isdir(file) or os.path.isfile(file):
+            shutil.move(file, os.path.join(HOME_DIR, TRASH_DIR))
+        else:
+            print(f"\"{file}\" does not exist.")
+            
+
+main()
