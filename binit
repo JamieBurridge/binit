@@ -11,7 +11,7 @@ def main():
     files_to_remove = sys.argv[1:]
 
     if len(files_to_remove) == 0:
-        print("Please provide files to remove")
+        print("Usage: binit [file/s] # move to trash")
         sys.exit()
 
     # Move files to trash
