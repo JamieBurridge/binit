@@ -5,7 +5,7 @@ import os
 import shutil
 
 HOME_DIR = os.environ["HOME"]
-TRASH_DIR = ".local/share/Trash/files"
+TRASH_DIR = os.path.join(HOME_DIR,".local/share/Trash/files")
 
 def main():
     files_to_remove = sys.argv[1:]
@@ -16,11 +16,30 @@ def main():
 
     # Move files to trash
     for file in files_to_remove:
-        # Check if is directory or file
-        if os.path.isdir(file) or os.path.isfile(file):
-            shutil.move(file, os.path.join(HOME_DIR, TRASH_DIR))
-        else:
-            print(f"\"{file}\" does not exist.")
+
+        is_done = False
+
+        postfix_file_number = 1
+        original_filename = file
+
+        while not is_done:
+            # Check if is directory or file
+            if os.path.isdir(file) or os.path.isfile(file):
+                try:
+                    shutil.move(file, os.path.join(TRASH_DIR, file))
+                    is_done = True
+                    print(f"{original_filename} binned successfully!")
+                except:
+                    old_file = file
+                    new_file = original_filename + (f"({postfix_file_number})")
+                    os.rename(old_file, new_file)
+
+                    file = new_file
+                    postfix_file_number += 1
+
+            else:
+                print(f"\"{file}\" does not exist.")
+                is_done = True
             
 
 main()
