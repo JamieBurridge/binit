@@ -31,7 +31,7 @@ def main():
                     print(f"{original_filename} binned successfully!")
                 except:
                     old_file = file
-                    new_file = original_filename + (f"({postfix_file_number})")
+                    new_file = os.path.dirname(original_filename) + (f"({postfix_file_number})")
                     os.rename(old_file, new_file)
 
                     file = new_file
