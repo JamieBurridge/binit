@@ -10,7 +10,7 @@ if sudo false; then
 fi
 
 if [[ -e "$install_dir/$script_name" ]]; then
-	echo "You have ALREADY installed binit, reinstalling..."
+	echo "You have ALREADY installed $script_name, reinstalling..."
 	rm "$install_dir/$script_name"
 fi
 
