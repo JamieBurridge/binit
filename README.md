@@ -4,6 +4,10 @@ A file trashing tool for Linux user to safely trash unwanted files.
 
 binit will move files to the **trash** instead of instantly deleting them.
 
+### Requirements:
+- python3
+- git
+
 ### Usage:
 
 ```
